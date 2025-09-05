@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Teacher's Day</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            position: relative;
+        }
+        
+        .main-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+            animation: pulse 2s infinite;
+        }
+        
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards 1s;
+        }
+        
+        /* Hero Section */
+        .hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 60vh;
+            position: relative;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 80%;
+            max-width: 800px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: slideUp 1s forwards 1.5s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent, 
+                rgba(255, 255, 255, 0.1), 
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+        
+        .message {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .quote {
+            font-style: italic;
+            text-align: center;
+            font-size: 1.6rem;
+            margin: 30px 0;
+            font-family: 'Playfair Display', serif;
+            position: relative;
+            padding: 0 40px;
+        }
+        
+        .quote::before, .quote::after {
+            content: '"';
+            font-size: 3rem;
+            position: absolute;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .quote::before {
+            left: 0;
+            top: -20px;
+        }
+        
+        .quote::after {
+            right: 0;
+            bottom: -40px;
+        }
+        
+        /* Animation Elements */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        
+        .floating-element {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.7;
+            animation: float 8s infinite;
+        }
+        
+        .floating-element:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+            color: #ffdd59;
+        }
+        
+        .floating-element:nth-child(2) {
+            top: 20%;
+            right: 15%;
+            animation-delay: 1s;
+            color: #ff5252;
+        }
+        
+        .floating-element:nth-child(3) {
+            bottom: 30%;
+            left: 15%;
+            animation-delay: 2s;
+            color: #48dbfb;
+        }
+        
+        .floating-element:nth-child(4) {
+            bottom: 20%;
+            right: 10%;
+            animation-delay: 3s;
+            color: #1dd1a1;
+        }
+        
+        .floating-element:nth-child(5) {
+            top: 40%;
+            left: 5%;
+            animation-delay: 4s;
+            color: #ff9ff3;
+        }
+        
+        /* Interactive Section */
+        .interactive-section {
+            margin-top: 80px;
+            text-align: center;
+        }
+        
+        .interactive-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .gift-box {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            position: relative;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+        }
+        
+        .gift-box:hover {
+            transform: rotate(10deg) scale(1.1);
+        }
+        
+        .box-top, .box-bottom {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff5252, #ff9ff3);
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .box-top {
+            transform: translateZ(20px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+        }
+        
+        .box-bottom {
+            transform: translateZ(-20px);
+        }
+        
+        .ribbon {
+            position: absolute;
+            width: 40px;
+            height: 100%;
+            background: #ffdd59;
+            left: calc(50% - 20px);
+            border-radius: 5px;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 80px;
+            padding: 20px;
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+        
+        .heart {
+            color: #ff5252;
+            animation: heartbeat 1.2s infinite;
+            display: inline-block;
+        }
+        
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+        
+        @keyframes shine {
+            0% { transform: rotate(45deg) translateX(-100%); }
+            100% { transform: rotate(45deg) translateX(100%); }
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            5% { transform: scale(1.1); }
+            10% { transform: scale(1); }
+            15% { transform: scale(1.2); }
+            50% { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 3.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .card {
+                width: 95%;
+                padding: 25px;
+            }
+            
+            .message {
+                font-size: 1.2rem;
+            }
+            
+            .quote {
+                font-size: 1.3rem;
+            }
+        }
+        
+        /* Confetti animation */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f0f;
+            opacity: 0.7;
+            animation: confetti-fall 5s linear infinite;
+        }
+        
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="main-title">Happy Teacher's Day!</h1>
+            <p class="subtitle">To the world's best teacher</p>
+        </div>
+        
+        <div class="hero">
+            <div class="floating-elements">
+                <div class="floating-element"><i class="fas fa-book"></i></div>
+                <div class="floating-element"><i class="fas fa-pencil-alt"></i></div>
+                <div class="floating-element"><i class="fas fa-graduation-cap"></i></div>
+                <div class="floating-element"><i class="fas fa-apple-alt"></i></div>
+                <div class="floating-element"><i class="fas fa-star"></i></div>
+            </div>
+            
+            <div class="card">
+                <p class="message">
+                    Dear Teacher, on this special day, I want to express my gratitude for your unwavering support, 
+                    patience, and dedication. You've not only taught me the curriculum but also important life lessons 
+                    that I will carry with me forever. Your passion for teaching and genuine care for your students 
+                    make you truly exceptional.
+                </p>
+                
+                <p class="quote">
+                    A good teacher can inspire hope, ignite the imagination, and instill a love of learning.
+                </p>
+                
+                <p class="message">
+                    Thank you for being that inspiration in my life. Wishing you a wonderful Teacher's Day filled with 
+                    joy and appreciation!
+                </p>
+            </div>
+        </div>
+        
+        <div class="interactive-section">
+            <h2 class="interactive-title">A Special Gift For You</h2>
+            <div class="gift-box" id="giftBox">
+                <div class="box-top">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <div class="box-bottom"></div>
+                <div class="ribbon"></div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Made with <span class="heart"><i class="fas fa-heart"></i></span> by Your Student</p>
+        </div>
+    </div>
+
+    <script>
+        // Create confetti elements
+        function createConfetti() {
+            const colors = ['#ff5252', '#48dbfb', '#1dd1a1', '#ffdd59', '#ff9ff3', '#f368e0'];
+            const container = document.querySelector('.hero');
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = (5 + Math.random() * 10) + 'px';
+                confetti.style.height = (5 + Math.random() * 10) + 'px';
+                container.appendChild(confetti);
+            }
+        }
+        
+        // Gift box interaction
+        document.getElementById('giftBox').addEventListener('click', function() {
+            createConfetti();
+            
+            // Create a modal with a special message
+            const modal = document.createElement('div');
+            modal.style.position = 'fixed';
+            modal.style.top = '0';
+            modal.style.left = '0';
+            modal.style.width = '100%';
+            modal.style.height = '100%';
+            modal.style.backgroundColor = 'rgba(0,0,0,0.8)';
+            modal.style.display = 'flex';
+            modal.style.justifyContent = 'center';
+            modal.style.alignItems = 'center';
+            modal.style.zIndex = '1000';
+            
+            const modalContent = document.createElement('div');
+            modalContent.style.background = 'linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)';
+            modalContent.style.padding = '40px';
+            modalContent.style.borderRadius = '20px';
+            modalContent.style.textAlign = 'center';
+            modalContent.style.maxWidth = '500px';
+            modalContent.style.boxShadow = '0 15px 35px rgba(0,0,0,0.3)';
+            
+            modalContent.innerHTML = `
+                <h2 style="font-family: 'Dancing Script', cursive; font-size: 2.5rem; margin-bottom: 20px;">Thank You, Teacher!</h2>
+                <p style="font-size: 1.2rem; line-height: 1.6;">
+                    Your gift is my promise to always strive for excellence and never stop learning.
+                    Thank you for everything you do!
+                </p>
+                <button id="closeModal" style="margin-top: 30px; padding: 10px 25px; background: rgba(255,255,255,0.2); 
+                    border: none; border-radius: 30px; color: white; font-size: 1rem; cursor: pointer; 
+                    backdrop-filter: blur(5px);">Close</button>
+            `;
+            
+            modal.appendChild(modalContent);
+            document.body.appendChild(modal);
+            
+            document.getElementById('closeModal').addEventListener('click', function() {
+                document.body.removeChild(modal);
+            });
+        });
+        
+        // Initial confetti on load
+        window.addEventListener('load', function() {
+            setTimeout(createConfetti, 1000);
+        });
+    </script>
+</body>
+</html>
